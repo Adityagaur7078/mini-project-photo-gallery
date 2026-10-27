@@ -90,9 +90,9 @@ This project uses the [Picsum Photos API](https://picsum.photos/):
 
 `https://picsum.photos/v2/list?limit=30`
 
-## Repository
+## Live Page
 
-[View Photo Gallery on GitHub](https://github.com/Adityagaur7078/mini-project-photo-gallery)
+[View Photo Gallery](https://mini-project-photo-gallery.vercel.app)
 
 ## License
 
