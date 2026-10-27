@@ -12,6 +12,8 @@ A responsive React photo gallery built for the Celebrare Frontend React Internsh
 - Restores favourites from `localStorage` after a refresh.
 - Uses `useCallback` for the search handler and `useMemo` for the filtered list.
 - Uses accessible labels, keyboard-operable buttons, and descriptive image alt text.
+- Uses responsive image sizes and `content-visibility` to keep scrolling smooth as cards enter the viewport.
+- Orders fetched photos by showing one photo per author before filling the remaining slots with the original records.
 
 ## Setup
 
@@ -59,7 +61,7 @@ src/
 └── main.jsx
 ```
 
-`useFetchPhotos` owns the API request and returns exactly `photos`, `loading`, and `error`. It uses an `AbortController` so an unmounted component cannot update state from an old request.
+`useFetchPhotos` owns the API request and returns exactly `photos`, `loading`, and `error`. After the response arrives, it deterministically orders one photo per author first, then appends the remaining records without mutating the API response. It uses an `AbortController` so an unmounted component cannot update state from an old request.
 
 `favouritesReducer` owns the list of favourite photo IDs. A reducer receives the current state and an action, then returns a new state. The `toggle` action adds an ID when absent and removes it when present. The reducer initializer safely reads and validates saved JSON. IDs are stored instead of complete photo objects because they are all that is needed to identify a favourite.
 

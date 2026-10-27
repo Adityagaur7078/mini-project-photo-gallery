@@ -16,15 +16,21 @@ function HeartIcon({ filled }) {
   );
 }
 
+function getSizedPhotoUrl(downloadUrl, width) {
+  return downloadUrl.replace(/\/\d+\/\d+$/, `/${width}/${Math.round(width * 0.75)}`);
+}
+
 export function PhotoCard({ photo, isFavourite, onToggleFavourite, eager = false }) {
   return (
-    <article className="group overflow-hidden rounded-xl border border-[#E5DED4] bg-white shadow-[0_8px_24px_rgba(36,34,31,0.04)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(36,34,31,0.08)]">
+    <article className="photo-card group overflow-hidden rounded-xl border border-[#E5DED4] bg-white shadow-[0_8px_24px_rgba(36,34,31,0.04)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(36,34,31,0.08)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-[#E5DED4]">
         <img
-          src={photo.download_url}
+          src={getSizedPhotoUrl(photo.download_url, 800)}
+          srcSet={`${getSizedPhotoUrl(photo.download_url, 400)} 400w, ${getSizedPhotoUrl(photo.download_url, 800)} 800w`}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           alt={`Photo by ${photo.author}`}
-          width={photo.width}
-          height={photo.height}
+          width="800"
+          height="600"
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"

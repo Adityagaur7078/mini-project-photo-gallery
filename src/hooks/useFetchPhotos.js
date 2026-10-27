@@ -2,6 +2,23 @@ import { useEffect, useState } from 'react';
 
 const PHOTOS_URL = 'https://picsum.photos/v2/list?limit=30';
 
+export function selectDiversePhotos(photos, displayLimit = 30) {
+  const uniqueAuthorPhotos = [];
+  const remainingPhotos = [];
+  const authors = new Set();
+
+  photos.forEach((photo) => {
+    if (!authors.has(photo.author)) {
+      authors.add(photo.author);
+      uniqueAuthorPhotos.push(photo);
+    } else {
+      remainingPhotos.push(photo);
+    }
+  });
+
+  return [...uniqueAuthorPhotos, ...remainingPhotos].slice(0, displayLimit);
+}
+
 export function useFetchPhotos() {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +46,7 @@ export function useFetchPhotos() {
           throw new Error('The photo service returned an unexpected response.');
         }
 
-        setPhotos(data);
+        setPhotos(selectDiversePhotos(data));
       } catch (fetchError) {
         if (fetchError.name !== 'AbortError') {
           setError(fetchError.message || 'Unable to load photos. Please try again.');
