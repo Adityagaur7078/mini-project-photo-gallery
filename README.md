@@ -22,7 +22,7 @@ A responsive photo gallery built with React, Vite, and Tailwind CSS. It fetches 
 - Tailwind CSS 3
 - JavaScript (ES6+)
 - Picsum Photos API
-- Browser localStorage
+- localStorage
 
 ## Getting Started
 
@@ -36,8 +36,8 @@ A responsive photo gallery built with React, Vite, and Tailwind CSS. It fetches 
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/celebrare-photo-gallery.git
-cd celebrare-photo-gallery
+git clone https://github.com/Adityagaur7078/mini-project-photo-gallery.git
+cd mini-project-photo-gallery
 ```
 
 Install dependencies:
@@ -89,6 +89,10 @@ src/
 This project uses the [Picsum Photos API](https://picsum.photos/):
 
 `https://picsum.photos/v2/list?limit=30`
+
+## Repository
+
+[View Photo Gallery on GitHub](https://github.com/Adityagaur7078/mini-project-photo-gallery)
 
 ## License
 
